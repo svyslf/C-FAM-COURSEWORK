@@ -1,0 +1,11 @@
+{
+    "cSpell.words": [
+        "aeiou",
+        "aeiouy",
+        "ified"
+    ],
+    "files.associations": {
+        "ctype.h": "c",
+        "pig.h": "c"
+    }
+}
