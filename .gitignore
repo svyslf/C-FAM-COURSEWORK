@@ -1,4 +1,7 @@
 /EX1/piglatin.dSYM
-/EX2/*.o
+/EX1/piglatin
+/EX1/*.o
 /EX2/riffle.dSYM
+/EX2/riffle
+/EX2/*.o
 .DS_Store
