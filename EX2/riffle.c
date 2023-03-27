@@ -3,61 +3,63 @@
 #include <time.h>
 #include <string.h>
 
-void * riffle_once(void *L, int len, int size, void *work)
+void riffle_once(void *L, int len, int size, void *work)
 {
+    memcpy(work, L, len * size);
     int midpoint = len / 2;
-    char *start = L;
-    char *middle = start + (midpoint*size);
-    char *end = start + ((len - 1)*size);
-    char *work_pointer = work;
+    char *riffled = L; 
+    char *middle = work + (midpoint * size);
+    char *end = work + ((len - 1) * size);
+    
 
-    int i; 
+    char *start_pointer = work;
+    char *middle_pointer = middle; 
+    int i;
     srand(time(0));
-    char originalMiddle = *middle;
 
+    int pick_direction = rand() % 2;
     for (i = 0; i < len; i++)
     {
-        if (*start == originalMiddle)
+        if (pick_direction == 1 && (middle_pointer <= end))
+        /* assign work_pointer to the values in the 2nd half of the "deck" */
         {
-            work_pointer = middle;
-           
-            middle+=size;
+            memcpy(riffled,  middle_pointer, size);
+            riffled += size; 
+            middle_pointer += size;
         }
-        else if (middle > end)
+        if (pick_direction == 0 && (start_pointer < middle_pointer))
+        /* assign work_pointer to the values in the 1st half of the "deck" */
         {
-            work_pointer = start;
-            
-            start+=size;
+            memcpy(riffled,  start_pointer, size);
+            riffled += size; 
+            start_pointer += size;
         }
+
+        if (start_pointer == middle)
+        /* if there's nothing left to shuffle in the 2nd half, pick from 1st half */
+        {
+            pick_direction = 1;
+        }
+
+        else if (middle_pointer > end)
+        /* if there's nothing left to shuffle in the 1st half, pick from 2nd half */
+        {
+            pick_direction = 0;
+        }
+
         else
+        /* if there are items left in both sides, pick one side randomly */
         {
-            int pick_direction = rand() % 2;
-
-            if (pick_direction == 1 && (middle <= end))
-            {
-                work_pointer = middle;
-               
-                middle+=size;
-            }
-            else if (pick_direction == 0 && (start < middle))
-            {
-                work_pointer = start;
-              
-                start+=size;
-            }
+            pick_direction = rand() % 2;
         }
-       
-        if (size == sizeof(int)) ((char *)work)[i] = *work_pointer;
-        else strcat(strcat(((char*)work), " "), *(char**)work_pointer);
-
-        work_pointer++;
     }
-
-    return work; 
 }
 
-
-// void riffle(void *L, int len, int size, int N) {
-//     int * work = malloc(size); 
-//     riffle_once(L, len , size , work); 
-// }
+void riffle(void *L, int len, int size, int N) {
+    int * work = malloc(size);
+    int i;
+    for ( i = 0; i < N; i ++){
+       riffle_once(L, len , size , work);
+    }
+    free(work);
+}
