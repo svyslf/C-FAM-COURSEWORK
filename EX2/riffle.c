@@ -4,6 +4,14 @@
 #include <string.h>
 
 void riffle_once(void *L, int len, int size, void *work)
+    /*
+        riffle_once 
+        -----------------------------------------------
+        Riffles the Array L in place, as described in the spec.  
+        Args:   void *L: array to riffle, int len: length of the array, 
+                int size: size of the type of elem in array, void *work: temp array to work in 
+    
+    */
 {
     memcpy(work, L, len * size);
     int midpoint = len / 2;
@@ -55,6 +63,14 @@ void riffle_once(void *L, int len, int size, void *work)
 }
 
 void riffle(void *L, int len, int size, int N) {
+    /*
+        riffle
+        ----------------------------------------
+        Calls riffle_once N number of times to do a proper shuffle in place. 
+        Args:   void *L: the array to riffle, int len: length of the array, 
+                int size: size of the type of elem in the array, 
+                int N: Number of times it should be riffled.
+    */
     int * work = malloc(size*len);
     int i;
     for ( i = 0; i < N; i ++){
@@ -64,7 +80,18 @@ void riffle(void *L, int len, int size, int N) {
 }
 
 int find_elem(void *L_1 , void *L_2, int len, int size, int (*cmp)(void*, void*)){
-    /* finds whether element L_1 exists in array L_2, if it does, return 1 else return 0 */
+    /* 
+        find_elem
+        --------------------------------------------------------------------------
+        Finds whether element L_1 exists in array L_2, if it does, return 1 else return 0 
+
+        Args:       void *L_1: The element to find , void *L_2: the array where you're searching for the element 
+                    int len: length of the array you're searching through 
+                    int size: size of the type of items in the array, 
+                    int (*cmp)(void*, void*): comparison function to compare values. 
+        Returns:    1 if found, 0 if not found. 
+    
+    */
     int i;
     int res; 
     for ( i = 0; i < len; i ++) {
@@ -80,8 +107,15 @@ int find_elem(void *L_1 , void *L_2, int len, int size, int (*cmp)(void*, void*)
 }
 
 int check_shuffle(void *L, int len, int size, int (*cmp)(void *, void *)) {
-    /* makes a copy of the array to riffle, riffles it, and checks whether the riffled items exist in the original and vice versa 
-        Returns 1 if the riffle is valid, 0 if not. 
+    /* 
+        check_shuffle 
+        ---------------------------------------------------------------
+        Makes a copy of the array to riffle, riffles it, and checks whether the riffled items exist in the original and vice versa.
+
+        Args :      void *L: the array to shuffle , int len: length of the array, 
+                    int size: size of the type of array, int (*cmp)(void *, void *): comparision function to compare array elems. 
+        Returns :   int: 0 if the check fails, 1 if it succeeds. 
+
     */
     void *L_copy = malloc(len * size);
     memcpy(L_copy, L, len * size); 
@@ -104,7 +138,15 @@ int check_shuffle(void *L, int len, int size, int (*cmp)(void *, void *)) {
 
 
 int cmp_int(void* L, void* L_riffled) {
-    /* compares two integers and returns 0 if they match */
+    /* 
+        cmp_int
+        -----------------------------------
+        Compares two integers by value. 
+
+        Args:       void* L: integer in original array, void* L_riffled: integer in riffled array
+        Returns:    int: 0 if they match, 1 if they don't
+
+    */
     int *L_pointer = (int *)L;
     int *L_riffled_pointer = (int *)L_riffled;
     int i, j; 
@@ -121,21 +163,37 @@ int cmp_int(void* L, void* L_riffled) {
     return 1; 
 }
 
-cmp_str(void* L, void* L_riffled){
-    /* compares two strings and returns 0 if they match */
+int cmp_str(void* L, void* L_riffled){
+    /* 
+        cmp_str
+        ------------------------------
+        Compares two strings by content. 
+
+        Args:       void* L: string in original array, void* L_riffled: string in riffled array
+        Returns:    int: 0 if they match, 1 if they don't
+    */
     char * L_pointer = (char*)L;
     char *L_riffled_pointer= (char*)L_riffled;
     return strcmp(L_pointer, L_riffled_pointer); 
 }
 
 float quality(int *numbers, int len){
+    /*
+        quality 
+        ---------------------------------
+        Returns the quality of the shuffle which is determined by how often consecutive numbers are in ascending order.
+        (more often => high quality value) (a quality value close to 0.5 is a good quality)
+
+        Args:       int *numbers: the number array you've shuffled , int len: length of the number array
+        Returns:    float: value of quality 
+
+    */
     int larger = 0; 
     int i; 
     float quality = 0.0; 
     for(i =0; i < len ; i ++) {
         if(i+1 != len){
             if (numbers[i] < numbers[i+1]){
-                // printf("%d vs %d\n", numbers[i], numbers[i+1]);
                 larger += 1; 
             }
         }
@@ -145,6 +203,14 @@ float quality(int *numbers, int len){
 }
 
 float average_quality(int N, int shuffles, int trials) {
+    /*
+        average_quality 
+        ----------------------------------------------------
+        Returns the average quality per shuffle set over a number of trials
+        Args:       int N: length of the number array
+        Returns:    float value of quality 
+
+    */
     int *to_shuffle = malloc( N * sizeof(int));
     if (to_shuffle == NULL){
         printf("Could not allocate enough memory");

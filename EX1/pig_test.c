@@ -9,8 +9,11 @@ void test()
     char *y = "duck";
     char *z = "glove";
     char *t = "evil";
-    printf("%s => %s\n", x, pig(x));
-    printf("%s => %s\n", y, pig(y));
-    printf("%s => %s\n", z, pig(z));
-    printf("%s => %s\n", t, pig(t));
+    char *response;
+    printf("%s => %s\n", x, response = pig(x));
+    printf("%s => %s\n", y, response = pig(y));
+    printf("%s => %s\n", z, response = pig(z));
+    printf("%s => %s\n", t, response = pig(t));
+    free(response);
+
 }
