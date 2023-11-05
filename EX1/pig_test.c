@@ -17,3 +17,6 @@ void test()
     free(response);
 
 }
+int main() {
+    test();
+}

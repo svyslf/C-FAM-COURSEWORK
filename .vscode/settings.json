@@ -2,10 +2,13 @@
     "cSpell.words": [
         "aeiou",
         "aeiouy",
-        "ified"
+        "ified",
+        "newnode",
+        "Nplayers"
     ],
     "files.associations": {
         "ctype.h": "c",
-        "pig.h": "c"
+        "pig.h": "c",
+        "riffle.h": "c"
     }
 }

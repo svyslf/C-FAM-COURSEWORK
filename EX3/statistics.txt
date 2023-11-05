@@ -1,0 +1,10 @@
+2 player game: Longest game: 695, Average game length: 163.869995, Shortest game: 28 
+3 player game: Longest game: 1052, Average game length: 247.850006, Shortest game: 41 
+4 player game: Longest game: 723, Average game length: 267.459991, Shortest game: 45 
+5 player game: Longest game: 953, Average game length: 313.820007, Shortest game: 66 
+6 player game: Longest game: 1034, Average game length: 289.339996, Shortest game: 77 
+7 player game: Longest game: 1068, Average game length: 318.079987, Shortest game: 87 
+8 player game: Longest game: 1143, Average game length: 318.190002, Shortest game: 105 
+9 player game: Longest game: 1402, Average game length: 324.920013, Shortest game: 127 
+10 player game: Longest game: 1496, Average game length: 348.279999, Shortest game: 96 
+Every game was played 100 times.

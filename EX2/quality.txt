@@ -1,0 +1,19 @@
+average quality on 1 shuffle(s):  0.789796 
+average quality on 2 shuffle(s):  0.653061 
+average quality on 3 shuffle(s):  0.568708 
+average quality on 4 shuffle(s):  0.535374 
+average quality on 5 shuffle(s):  0.506122 
+average quality on 6 shuffle(s):  0.504082 
+average quality on 7 shuffle(s):  0.500680 
+average quality on 8 shuffle(s):  0.509524 
+average quality on 9 shuffle(s):  0.512245 
+average quality on 10 shuffle(s):  0.500000 
+average quality on 11 shuffle(s):  0.499320 
+average quality on 12 shuffle(s):  0.506803 
+average quality on 13 shuffle(s):  0.512925 
+average quality on 14 shuffle(s):  0.514966 
+average quality on 15 shuffle(s):  0.495918 
+
+The results indicate, that generally, for an array of length 50, approximately 7 shuffles will result in a near perfect shuffle 
+as per the standard defined in the specification. 
+After this point, or sometimes even 5 shuffles, the values will differ by negligible margins from 0.5. 

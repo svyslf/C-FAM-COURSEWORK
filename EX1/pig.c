@@ -2,11 +2,17 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
-#include "pig.h"
-/* The pig function returns a pig latin-ified version of the word entered
+
+/** @brief
+ *  The pig function returns a pig latin-ified version (as per the specification) of the word entered in command line. 
+ *  
+ *  @param *word::char The word to be converted
+ * 
+ *  @returns
+ *  char*: The pig-latin version of the word entered. 
  */
 char *pig(char *word)
-// TODO: assign memory properly to returnedWord
+
 {
    
     char lower = tolower(*word);

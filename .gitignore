@@ -4,4 +4,6 @@
 /EX2/riffle.dSYM
 /EX2/riffle
 /EX2/*.o
+/EX3/beggar
+/EX3/*.o
 .DS_Store

@@ -2,24 +2,32 @@
 #include <stdlib.h>
 #include <string.h>
 #include "pig.h"
-
+/** @brief
+ *  The driver function that runs the interactive pig-latin converter.
+*/
 int main()
 {
-    test();
+    
     char input[255];
     char *string, *word, *response;
 
-    do
-    {
-        printf("\n Enter Sentence: ");
+    while (strlen(input) > 1){ 
+        printf("\n");
+        printf("Enter Sentence: ");
 
+        /* get user input */
         string = fgets(input, sizeof(input), stdin);
-        string[strcspn(string, "\n")] = 0; // remove newline
+        /* remove trailing newline that is inserted by fgets*/
+        string[strcspn(string, "\n")] = 0; 
         while ((word = strsep(&string, " ")) != NULL)
         {
+            if (*word == '\0') {
+                // skip word if it's empty
+                continue; 
+            }
             printf("%s ", response = pig(word));
         }
-    } while (input[0] != '\n');
+    }
     free(response);
     return 0;
 }
